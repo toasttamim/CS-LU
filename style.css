@@ -1,1 +1,212 @@
-*{box-sizing:border-box}:root{--bg:#f6f8fb;--panel:#fff;--text:#18212f;--muted:#667085;--line:#e5e7eb;--accent:#2563eb;--accent-soft:#dbeafe;--code-bg:#111827}body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.65}.sidebar{position:fixed;inset:0 auto 0 0;width:310px;background:var(--panel);border-right:1px solid var(--line);padding:24px;overflow-y:auto}.brand{display:flex;gap:12px;align-items:center;margin-bottom:24px}.badge{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:var(--accent);color:white;font-weight:800}.brand h1{font-size:20px;margin:0}.brand p{margin:0;color:var(--muted);font-size:14px}nav a{display:block;padding:10px 12px;margin:4px 0;color:var(--text);text-decoration:none;border-radius:10px;font-size:14px}nav a:hover,nav a.active{background:var(--accent-soft);color:var(--accent)}.content{margin-left:310px;padding:32px;max-width:1180px}.hero,.lesson{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:32px;box-shadow:0 12px 30px rgba(15,23,42,.05);margin-bottom:24px}.hero h2{font-size:40px;line-height:1.1;margin:0 0 12px}.eyebrow{text-transform:uppercase;letter-spacing:.12em;color:var(--accent);font-weight:700;font-size:13px}.lesson h1,.lesson h2{border-bottom:1px solid var(--line);padding-bottom:10px}.lesson h2{margin-top:36px}.lesson h3{margin-top:28px;color:#1f2937}code{background:#eef2ff;padding:2px 6px;border-radius:6px}pre{background:var(--code-bg);color:#e5e7eb;padding:18px;border-radius:16px;overflow-x:auto}pre code{background:transparent;padding:0;color:inherit}table{border-collapse:collapse;width:100%;margin:18px 0;overflow:hidden;border-radius:12px}th,td{border:1px solid var(--line);padding:10px 12px;text-align:left}th{background:#f3f4f6}blockquote{border-left:4px solid var(--accent);margin:18px 0;padding:10px 16px;background:#eff6ff;border-radius:10px}.top-btn{position:fixed;right:24px;bottom:24px;width:44px;height:44px;border:0;border-radius:50%;background:var(--accent);color:white;font-size:22px;cursor:pointer;box-shadow:0 10px 20px rgba(37,99,235,.25)}@media(max-width:850px){.sidebar{position:static;width:100%;height:auto}.content{margin-left:0;padding:16px}.hero h2{font-size:30px}}
+/* Custom Properties for a Modern Aesthetic */
+:root {
+  --bg: #f8fafc;
+  --panel: #ffffff;
+  --text: #0f172a;
+  --muted: #64748b;
+  --line: #e2e8f0;
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --accent-soft: #f1f5f9;
+  --code-bg: #0f172a;
+  --radius-lg: 16px;
+  --radius-md: 10px;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+* { box-sizing: border-box; transition: all 0.2s ease-in-out; }
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Sidebar: Fixed and Organized */
+.sidebar {
+  position: fixed;
+  inset: 0 auto 0 0;
+  width: 280px;
+  background: var(--panel);
+  border-right: 1px solid var(--line);
+  padding: 32px 20px;
+  overflow-y: auto;
+  z-index: 10;
+}
+
+.brand {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 40px;
+  padding-left: 8px;
+}
+
+.badge {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, var(--accent), #4f46e5);
+  color: white;
+  font-weight: 800;
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+}
+
+.brand h1 { font-size: 18px; font-weight: 700; margin: 0; color: var(--text); }
+.brand p { margin: 0; color: var(--muted); font-size: 13px; }
+
+/* Navigation: Clean and Interactive */
+nav a {
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  margin: 4px 0;
+  color: var(--muted);
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+nav a:hover {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+nav a.active {
+  background: var(--accent);
+  color: white;
+  box-shadow: var(--shadow-md);
+}
+
+/* Content: Spacious and Readable */
+.content {
+  margin-left: 280px;
+  padding: 40px 60px;
+  max-width: 1000px;
+}
+
+.hero, .lesson {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 48px;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 32px;
+}
+
+.hero h2 {
+  font-size: 42px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 12px 0;
+  color: #1e293b;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 12px;
+}
+
+/* Markdown Elements */
+.lesson h2 {
+  font-size: 28px;
+  margin-top: 48px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--accent-soft);
+}
+
+.lesson p {
+  font-size: 17px;
+  color: #334155;
+  margin-bottom: 20px;
+}
+
+code {
+  background: #f1f5f9;
+  color: #ef4444; /* Standard 'code' color for contrast */
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.9em;
+}
+
+pre {
+  background: var(--code-bg);
+  padding: 24px;
+  border-radius: 12px;
+  position: relative;
+  border: 1px solid #1e293b;
+}
+
+pre code {
+  background: transparent;
+  color: #cbd5e1;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* Table Design */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  margin: 24px 0;
+}
+
+th {
+  background: #f8fafc;
+  font-weight: 600;
+  color: var(--muted);
+  border-bottom: 1px solid var(--line);
+}
+
+td, th { padding: 12px 16px; text-align: left; }
+
+/* Scroll-to-top Button */
+.top-btn {
+  position: fixed;
+  right: 32px;
+  bottom: 32px;
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 12px;
+  background: var(--accent);
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+}
+
+.top-btn:hover {
+  transform: translateY(-4px);
+  background: var(--accent-hover);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 900px) {
+  .sidebar {
+    position: relative;
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--line);
+  }
+  .content {
+    margin-left: 0;
+    padding: 24px;
+  }
+  .hero, .lesson { padding: 24px; }
+  .hero h2 { font-size: 32px; }
+}
