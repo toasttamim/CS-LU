@@ -2,10 +2,10 @@ const lesson = document.getElementById('lesson');
 const nav = document.getElementById('moduleNav');
 const topBtn = document.getElementById('topBtn');
 
-// Define your modules directly here to avoid extra fetch requests
+// The list of your Markdown files
 const modules = [
   { "title": "Introduction", "file": "modules/00-introduction.md" },
-  { "title": "1: Linear Data Structures", "file": "modules/01-introduction-to-linear-data-structures.md" },
+  { "title": "1: Linear Structures", "file": "modules/01-introduction-to-linear-data-structures.md" },
   { "title": "2: Stacks Theory", "file": "modules/02-stacks-concept-and-theory.md" },
   { "title": "3: Stack (Array-Based)", "file": "modules/03-stack-implementation-in-c-array-based.md" },
   { "title": "4: Stack (Linked List)", "file": "modules/04-stack-implementation-in-c-linked-list-based.md" },
@@ -19,60 +19,56 @@ const modules = [
   { "title": "12: Exercises", "file": "modules/12-exercises-and-challenges.md" }
 ];
 
-// Modern Marked.js setup
-marked.setOptions({
-  breaks: true,
-  gfm: true
-});
+marked.setOptions({ breaks: true, gfm: true });
 
-async function loadModule(file, link) {
-  lesson.innerHTML = '<div class="loading">Loading lesson content...</div>';
+async function loadModule(file, linkElement) {
+  lesson.innerHTML = '<p>Loading lesson content...</p>';
   
   try {
     const response = await fetch(file);
-    if (!response.ok) throw new Error(`Could not load ${file}`);
-    
+    if (!response.ok) throw new Error('File not found');
     const markdown = await response.text();
+    
     lesson.innerHTML = marked.parse(markdown);
-    
-    // Update Active Link UI
+
+    // Apply syntax highlighting to any code blocks found
+    document.querySelectorAll('pre code').forEach((el) => {
+      hljs.highlightElement(el);
+    });
+
+    // Update active link UI
     document.querySelectorAll('#moduleNav a').forEach(a => a.classList.remove('active'));
-    if (link) link.classList.add('active');
-    
+    if (linkElement) linkElement.classList.add('active');
+
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  } catch (error) {
-    lesson.innerHTML = `<div class="error">Error: ${error.message}. Make sure the file exists in your /modules folder.</div>`;
+  } catch (err) {
+    lesson.innerHTML = `<div style="color:red; padding:20px; border:1px solid red; border-radius:8px;">
+      <b>Error:</b> Could not find <code>${file}</code>. <br>
+      Make sure the file name matches exactly (case-sensitive) and is inside the <code>modules/</code> folder.
+    </div>`;
   }
 }
 
 function init() {
   modules.forEach((module, index) => {
     const a = document.createElement('a');
-    a.href = '#';
+    a.href = "#";
     a.textContent = module.title;
-    a.className = 'nav-link'; // Added for easier CSS styling
-    
-    a.addEventListener('click', (event) => {
-      event.preventDefault();
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
       loadModule(module.file, a);
     });
-    
     nav.appendChild(a);
     
-    // Load the first module automatically on start
+    // Load first module by default
     if (index === 0) loadModule(module.file, a);
   });
 }
 
-// Back to top logic
+// Top button behavior
 window.onscroll = () => {
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    topBtn.style.display = "block";
-  } else {
-    topBtn.style.display = "none";
-  }
+  topBtn.style.display = (window.scrollY > 300) ? "block" : "none";
 };
-
-topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+topBtn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
 init();
